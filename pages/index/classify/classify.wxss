@@ -1,0 +1,8 @@
+/* pages/index/classify/classify.wxss */
+.publish{
+  width:70rpx;
+  height:70rpx;
+  position: fixed;
+  bottom:15%;
+  right:5%;
+}

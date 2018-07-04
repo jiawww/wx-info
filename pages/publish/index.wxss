@@ -1,0 +1,5 @@
+/* pages/publish/publish.wxss */
+.main{
+  height:100%;
+  color:#000;
+}

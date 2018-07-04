@@ -1,0 +1,10 @@
+<!--pages/index/classify/classify.wxml-->
+<view>
+  <search-box bind:goSearch="goSearch"></search-box>
+  <pick-list></pick-list>
+  分类展示信息
+  <image class="publish" bindtap='toPublish' src="../../../static/image/plus.svg"/>
+  <ul>
+    <li>1</li>
+  </ul>
+</view>

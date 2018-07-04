@@ -1,0 +1,9 @@
+<!--pages/components/pickList/pickList.wxml-->
+<view class="class-list">
+  <ul class="pick">
+    <li></li>
+  </ul>
+  <ul class="list">
+    <li></li>
+  </ul>
+</view>

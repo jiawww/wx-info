@@ -1,0 +1,4 @@
+<!--pages/publish/publish.wxml-->
+<view class="main">
+ <text>发布信息</text>
+</view>

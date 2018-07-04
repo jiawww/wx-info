@@ -1,0 +1,7 @@
+<!--pages/components/iconItem/iconItem.wxml-->
+ <view class="icon-item" bindtap='toJump'>
+    <view class="icon-icon" style="background-color:{{bgColor}}">
+      <slot></slot>    
+    </view>
+    <view>{{iconTitle}}</view>
+ </view>
