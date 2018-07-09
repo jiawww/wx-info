@@ -64,9 +64,19 @@
 }
 .post-detail{
   width:600rpx;
-  overflow-x:hidden; 
+  font-size:28rpx;
+  line-height: 38rpx;
+  padding:10rpx 0;
   box-sizing:border-box;
+  overflow:hidden; 
   text-overflow:ellipsis;
+  white-space: nowrap; 
+}
+.post-detail-more{
+  display:-webkit-box;
+  -webkit-line-clamp:5;
+  -webkit-box-orient:vertical;
+  white-space: normal; 
 }
 .show-more{
   color:#FF5F07;
@@ -94,7 +104,7 @@
 .address{
   text-align:right;
   padding:10rpx 10rpx;
-  color:#485678;
+  color:#576B95;
   font-size:24rpx;
 }
 .post-data{
@@ -109,9 +119,4 @@
   height:30rpx;
   margin-left:10rpx;
   vertical-align:middle;
-}
-.post-detail{
-  font-size:28rpx;
-  line-height: 32rpx;
-  padding:10rpx 0;
 }

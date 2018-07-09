@@ -84,37 +84,40 @@ Page({
         bgColor:"#FF490D",
         num: 12
       }      
-    ]
+    ],
+    infoDataList:[],
+    infoData:{}
   },
   //事件处理函数
   onLoad: function () {
-    // if (app.globalData.userInfo) {
-    //   this.setData({
-    //     userInfo: app.globalData.userInfo,
-    //     hasUserInfo: true
-    //   })
-    // } else if (this.data.canIUse){
-    //   // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-    //   // 所以此处加入 callback 以防止这种情况
-    //   app.userInfoReadyCallback = res => {
-    //     this.setData({
-    //       userInfo: res.userInfo,
-    //       hasUserInfo: true
-    //     })
-    //   }
-    // } else {
-    //   // 在没有 open-type=getUserInfo 版本的兼容处理
-    //   wx.getUserInfo({
-    //     success: res => {
-    //       app.globalData.userInfo = res.userInfo
-    //       this.setData({
-    //         userInfo: res.userInfo,
-    //         hasUserInfo: true
-    //       })
-    //     }
-    //   })
-    // }
+    this.getInfoData();
     this.setList();
+  },
+  // 获取数据
+  getInfoData:function(){
+    this.setData({
+      infoData:{
+        postId: "1",
+        photo: "../../../static/image/city.png",
+        name: "魏永刚",
+        tag: "全职招聘-销售",
+        isTop: false,
+        detail: "详情：招内勤1名。业务主任3名。业务员20名。要求要有团队精神，有上进心，每月15号发工资。工作时间8个小时，名额有限，报名电话，15690018617......13483409787",
+        phoneNum: "18880010008",
+        images: [
+          "../../../static/image/post-img.jpg",
+          "../../../static/image/post-img.jpg",
+          "../../../static/image/post-img.jpg",
+          "../../../static/image/post-img.jpg",
+          "../../../static/image/post-img.jpg",
+          "../../../static/image/post-img.jpg"
+        ],
+        address: "河北省临漳县",
+        pubTime: "1小时前",
+        browse: 0,
+        comments: 0
+      }
+    });
   },
   // 处理后的图标列表
   setList:function(){
