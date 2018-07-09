@@ -1,1 +1,8 @@
-{}
+{
+  "usingComponents": {
+    "icon-item": "../components/iconItem/iconItem"
+  },
+  "window":{
+    "backgroundColor": "#eeeeee"
+  }
+}

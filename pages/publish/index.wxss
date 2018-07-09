@@ -1,5 +1,9 @@
 /* pages/publish/publish.wxss */
 .main{
-  height:100%;
   color:#000;
+}
+.icon-group{
+  width:700rpx;
+  height:350rpx;
+  margin:0 auto;
 }
