@@ -3,7 +3,9 @@
     "pages/index/index",
     "pages/index/classify/classify",
     "pages/publish/index",
-    "pages/userCenter/index"  
+    "pages/user-center/index",
+    "pages/user-center/user-history/user-history",
+    "pages/user-center/change-info/change-info"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -30,7 +32,7 @@
         "text": "发布"
       },
       {
-        "pagePath": "pages/userCenter/index",
+        "pagePath": "pages/user-center/index",
         "iconPath": "static/image/user.png",
         "selectedIconPath": "static/image/user-s.png",
         "text": "我的"

@@ -141,5 +141,8 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  toJump:function(e){
+    console.log(e.target);
   }
 })
