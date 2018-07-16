@@ -12,4 +12,8 @@ page{
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
-
+.container-gray{
+  height:100%;
+  background-color: #ddd;
+  text-align: center;
+}

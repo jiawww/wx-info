@@ -1,5 +1,5 @@
 <!--pages/user-center/index.wxml  用户中心/“我的” 页面-->
-<view class="user-center">
+<view class="container-gray">
   <view class="userinfo">
     <!--未登录显示状态  -->
     <view wx:if="{{!hasUserInfo && canIUse}}" >
@@ -7,7 +7,8 @@
     </view>
     <!--登录后头像即昵称显示  -->
     <view wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" 
+      mode="aspectFill"></image>
       <view class="userinfo-nickname">{{userInfo.nickName}}</view>
     </view>
   </view>

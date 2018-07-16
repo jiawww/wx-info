@@ -1,6 +1,7 @@
-/* pages/user-center/change-info/change-info.wxss */
+/* pages/publish/create-post/create-post.wxss */
 .list{
   font-size:32rpx;
+  margin-bottom:20rpx;
 }
 .list-item{
   background-color:#fff;
@@ -10,11 +11,9 @@
   border-bottom:2rpx solid #ddd; 
   padding :20rpx; 
 }
-.userinfo-avatar{
-  width:100rpx;
-  height:100rpx;
-  border-radius: 50%;
+.set-input{
+  text-align: right;
 }
-.userinfo-name{
-   text-align: right; 
+.set-textarea{
+  text-align: left;
 }

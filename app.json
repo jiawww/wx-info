@@ -5,7 +5,8 @@
     "pages/publish/index",
     "pages/user-center/index",
     "pages/user-center/user-history/user-history",
-    "pages/user-center/change-info/change-info"
+    "pages/user-center/change-info/change-info",
+    "pages/publish/create-post/create-post"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -6,7 +6,7 @@
 }
 .icon-group{
   width:700rpx;
-  height:350rpx;
+  height:360rpx;
   margin:0 auto;
 }
 .ad-box{
