@@ -1,6 +1,7 @@
 //app.js
 const { Provider } = require('./libs/wechat-weapp-redux.js');
 const configureStore = require('./configureStore.js');
+const serviceApi=require('./libs/serviceApi.js');
 App(Provider(configureStore())({
   onLaunch: function () {
     // 展示本地存储能力
@@ -36,6 +37,7 @@ App(Provider(configureStore())({
     })
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    serviceApi:serviceApi
   }
 }))

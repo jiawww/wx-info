@@ -17,3 +17,10 @@
 .set-textarea{
   text-align: left;
 }
+.img-list{
+  text-align: left;
+}
+.pre-img{
+  width:200rpx;
+  height:200rpx;
+}

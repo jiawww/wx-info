@@ -26,6 +26,10 @@
     <li class="list-item">
       <textarea placeholder='请具体描述' class="set-textarea"></textarea>
     </li>
+    <view class="img-list">
+      <image wx:for="{{imgList}}" wx:key="unique" wx:for-item="imgSrc" src="{{imgSrc}}" mode="scaleToFill" class="pre-img"></image>
+    </view>
+    <button type="warn" bindtap="upImg">上传图片</button>
   </view>
   <view class="list">
     <li class="list-item">
@@ -37,4 +41,5 @@
       <switch></switch>
     </li>
   </view>
+  <button type="primary" bindtap="publish">发布</button>
 </view>

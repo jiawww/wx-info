@@ -1,4 +1,5 @@
 // pages/publish/create-post/create-post.js
+const app = getApp();
 Page({
 
   /**
@@ -6,7 +7,9 @@ Page({
    */
   data: {
     multiArray: [['房产租售', '招聘求职'], ['出租', '出售'], ['整租', '合租']],
-    multiIndex: [0, 0, 0]
+    multiIndex: [0, 0, 0],
+    imgList:[],
+    imgListFile:[]
   },
   bindMultiPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -65,4 +68,74 @@ Page({
     }
     this.setData(data);
   },
+  upImg:function(e){
+    console.log(this);
+    let _this=this;
+    wx.chooseImage({
+      success: function(res) {
+        console.log(res);
+        _this.data.imgList=_this.data.imgList.concat(res.tempFilePaths);
+        _this.data.imgListFile=_this.data.imgListFile.concat(res.tempFiles);
+        _this.setData({
+          imgList:_this.data.imgList,
+          imgListFile:_this.data.imgListFile
+        });
+       
+      },
+    })
+  },
+  publish:function(){
+    let myService=app.globalData.serviceApi;
+    let _this=this;
+    if (_this.data.imgList.length===0){
+      wx.request({
+        url: myService.AddPublishMessage,
+        data: {
+          wx_id: "666",
+          title: "招人啦",
+          category: "1",
+          phone: "18812338888",
+          description: "要求有责任心",
+          top: "5",
+          type: "123",
+          name: "张三",
+          gender: "0"
+        },
+        success:function(res){
+          console.log(res);
+        }
+      })
+    }else{
+      wx.uploadFile({
+        url: myService.AddPublishMessage,
+        filePath: _this.data.imgList[0],
+        name: 'image',
+        header: {
+          "Content-Type": "multipart/form-data"
+        },
+        formData: {
+          wx_id: "666",
+          title: "招人啦",
+          category: "1",
+          phone: "18812338888",
+          description: "要求有责任心",
+          top: "5",
+          type: "123",
+          name: "张三",
+          gender: "0"
+        },
+        success: function (res) {
+          console.log(res);
+        },
+        fail: function (res) {
+          console.log(res);
+        },
+        complete: function (res) {
+
+        }
+
+      })
+    }
+   
+  }
 })
