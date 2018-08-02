@@ -92,11 +92,12 @@ Page({
       wx.request({
         url: myService.AddPublishMessage,
         data: {
-          wx_id: "666",
+          user_id: "241e0a6e-2cce-440f-8e60-bd76da3bacc4",
           title: "招人啦",
           category: "1",
           phone: "18812338888",
-          description: "要求有责任心",
+          image:[],
+          text: "要求有责任心",
           top: "5",
           type: "123",
           name: "张三",
@@ -107,57 +108,85 @@ Page({
         }
       })
     }else{
-        let data,
-        i = data.i ? data.i : 0,
-        success = data.success ? data.success : 0,
-        fail = data.fail ? data.fail : 0;
-
-      wx.uploadFile({
-        url: myService.AddPublishMessagePic,
-        filePath: _this.data.imgList[i],
-        name: 'image',
-        header: {
-          "Content-Type": "multipart/form-data"
-        },
-        formData: {
-          wx_id: "666",
-          title: "招人啦",
-          category: "1",
-          phone: "18812338888",
-          description: "要求有责任心",
-          top: "5",
-          type: "123",
-          name: "张三",
-          gender: "0"
-        },
-        success: function (res) {
-          console.log(res);
-          success++;
-          console.log(res)
-          console.log(i);
-
-        },
-        fail: function (res) {
-          console.log(res);
-          fail++;
-          console.log('fail:' + i + "fail:" + fail);
-
-        },
-        complete: function (res) {
-          console.log(i);
-          i++;
-          if (i == data.path.length) {  //当图片传完时，停止调用     
-            console.log('执行完毕');
-            console.log('成功：' + success + " 失败：" + fail);
-          } else {
-            console.log(i);
-            data.i = i;
-            data.success = success;
-            data.fail = fail;
-            that.uploadimg(data);
-        }
-
+      let list=[];
+      let promise=Promise.all(_this.data.imgList.map((img,index)=>{
+        return new Promise(function (resolve, reject) {
+          wx.uploadFile({
+            url: myService.GetImage,
+            filePath: img,
+            name: 'image',
+            success: function (res) {
+              let data=JSON.parse(res.data);
+              list.push(data.file_name);
+              resolve('success');
+            },
+            fail: function (err) {
+              reject(new Error('failed to upload file'));
+            }
+          });
+        });
+      }));
+      promise.then(function (results) {
+        console.log(results);
+        wx.request({
+          url: myService.AddPublishMessage,
+          header: {
+              'content-type': 'application/json' // 默认值
+          },
+          data: {
+            user_id: "241e0a6e-2cce-440f-8e60-bd76da3bacc4",
+            image:list,
+            title: "招人啦",
+            category: "1",
+            phone: "18812338888",
+            text: "要求有责任心",
+            top: "5",
+            type: "123",
+            name: "张三",
+            gender: "0"
+          },
+          success: function (res) {
+            console.log(res);
+          }
       })
+      }).catch(function (err) {
+        console.log(err);
+      });
+      // for (let i = 0, len = _this.data.imgList.length;i<len;i++){
+      //   wx.uploadFile({
+      //     url: myService.GetImage,
+      //     filePath: _this.data.imgList[i],
+      //     name: 'image',
+      //     header: {
+      //       "Content-Type": "multipart/form-data"
+      //     },
+      //     success: function (res) {
+      //       let data=JSON.parse(res.data);
+      //       list.push(data.file_name);
+      //       console.log(list);
+      //     }
+      //   })
+      // }
+      // console.log(list);
+      // wx.request({
+      //   url: myService.AddPublishMessage,
+      //   data: {
+      //     user_id: "241e0a6e-2cce-440f-8e60-bd76da3bacc4",
+      //     image:list,
+      //     title: "招人啦",
+      //     category: "1",
+      //     phone: "18812338888",
+      //     description: "要求有责任心",
+      //     top: "5",
+      //     type: "123",
+      //     name: "张三",
+      //     gender: "0"
+      //   },
+      //   success: function (res) {
+      //     console.log(res);
+      //   }
+      // })
+   
     }
    
   }
