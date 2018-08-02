@@ -1,6 +1,7 @@
-const url ="http://47.93.45.17:8080/WeixinPro/";
+const url ="http://47.93.45.17:8080/FirstPro/";
 const serviceApi={  
   AddPublishMessage:url+"JobHuntingServlet?method=AddPublishMessage",
+  AddPublishMessagePic: url + "JobHuntingServlet?method=AddPublishMessagePic",
   UpdatePublishMessage:url+"JobHuntingServlet?method=UpdatePublishMessage",
   PublishMessagesList: url +"JobHuntingServlet?method=PublishMessagesList",
   DeleteMessage: url +"JobHuntingServlet?method=DeleteMessage",
