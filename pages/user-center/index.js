@@ -13,7 +13,7 @@ Page({
   //事件处理函数
   onLoad: function () {},
   getUserInfo: function (e) {
-    console.log(e);
+    // console.log(e);
     // app.globalData.userInfo = e.detail.userInfo;
     // this.setData({
     //   userInfo: e.detail.userInfo,
@@ -28,6 +28,9 @@ Page({
             url: myService.UserLogin,
             data: {
               code: res.code
+            },
+            success:function(res){
+               console.log(res); 
             }
           })
         } else {
@@ -40,6 +43,6 @@ Page({
     let target=e.target.dataset.target;
     wx.navigateTo({
       url: target+"/"+target,
-    })
+    });
   }
 })

@@ -9,7 +9,7 @@ Page({
     multiArray: [['房产租售', '招聘求职'], ['出租', '出售'], ['整租', '合租']],
     multiIndex: [0, 0, 0],
     imgList:[],
-    imgListFile:[]
+    publishLoading:false
   },
   bindMultiPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -75,10 +75,8 @@ Page({
       success: function(res) {
         console.log(res);
         _this.data.imgList=_this.data.imgList.concat(res.tempFilePaths);
-        _this.data.imgListFile=_this.data.imgListFile.concat(res.tempFiles);
         _this.setData({
-          imgList:_this.data.imgList,
-          imgListFile:_this.data.imgListFile
+          imgList:_this.data.imgList
         });
        
       },
@@ -87,6 +85,9 @@ Page({
   publish:function(){
     let myService=app.globalData.serviceApi;
     let _this=this;
+    _this.setData({
+      publishLoading:true
+    });
     // console.log(_this.data.imgList.toString());
     if (_this.data.imgList.length===0){
       wx.request({
@@ -105,6 +106,13 @@ Page({
         },
         success:function(res){
           console.log(res);
+          _this.setData({
+            publishLoading: false
+          });
+          wx.showToast({
+            title: '发布成功',
+            icon: 'success'
+          });
         }
       })
     }else{
@@ -147,6 +155,13 @@ Page({
           },
           success: function (res) {
             console.log(res);
+            _this.setData({
+              publishLoading:false
+            });
+            wx.showToast({
+              title: '发布成功',
+              icon: 'success'
+            })
           }
       })
       }).catch(function (err) {

@@ -41,5 +41,5 @@
       <switch></switch>
     </li>
   </view>
-  <button type="primary" bindtap="publish">发布</button>
+  <button type="primary" bindtap="publish" loading="{{publishLoading}}">发布</button>
 </view>
