@@ -1,0 +1,22 @@
+<!--pages/index/info-detail/info-detail.wxml-->
+<view>
+  帖子详情页
+    <!-- userid: "241e0a6e-2cce-440f-8e60-bd76da3bacc4",
+          title: "招人啦",
+          category: "1",
+          phone: submitData.phone,
+          image:[],
+          description: "要勤奋的",
+          top: submitData.top,
+          type: submitData.type,
+          name: "张三",
+          gender: "0"
+  <view>{{title}}</view>
+  <view>{{name}}</view>
+  <view>showLabel(category,type)</view>
+  <view>showTop(top)</view>
+  <view>{{description}}</view>
+  <view>
+    <image wx:for="{{image}}" src="{{item}}"></image>
+  </view> -->
+</view>

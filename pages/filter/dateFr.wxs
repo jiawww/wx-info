@@ -1,0 +1,23 @@
+var DateFr = {
+  format :function(val){
+    return val < 10 ? '0' + val : val;
+  },
+  getDate: function (time, splitStr) {
+
+    if (!time) return '';
+
+    var date = getDate(time);
+    var M =  DateFr.format(date.getMonth() + 1);
+    var Y = DateFr.format(date.getFullYear());
+    var D = DateFr.format(date.getDate());
+    var h = DateFr.format(date.getHours());
+    var minute = DateFr.format(date.getMinutes());
+    var second = DateFr.format(date.getSeconds());
+    
+    return  M+'-'+D+" "+h+":"+minute+":"+second;  
+  }
+}
+
+module.exports = {
+  getDate: DateFr.getDate
+}

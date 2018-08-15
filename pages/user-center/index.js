@@ -3,6 +3,7 @@ const app = getApp()
 Page({
   data: {
     userInfo: {},
+    user_id:"",
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     infoList:[
@@ -12,14 +13,33 @@ Page({
   },
   //事件处理函数
   onLoad: function () {},
+  // 用户登录
   getUserInfo: function (e) {
-    // console.log(e);
-    // app.globalData.userInfo = e.detail.userInfo;
-    // this.setData({
-    //   userInfo: e.detail.userInfo,
-    //   hasUserInfo: true
-    // })
+    let _this=this;
+    wx.showModal({
+      title:'微信授权',
+      content:'小程序申请获得你的公开信息（昵称、头像等）',
+      success: function(res){
+        if(res.confirm){
+          app.globalData.userInfo = e.detail.userInfo;
+          _this.setData({
+            userInfo: e.detail.userInfo,
+            hasUserInfo: true
+          })
+          _this.userLogin();
+        }else if(res.cancel){
+          wx.showToast({
+            title: '取消授权',
+            icon: 'none'
+          })
+        }
+      }
+    });
+   
+  },
+  userLogin:function(){
     let myService = app.globalData.serviceApi;
+    let _this = this;
     wx.login({
       success: function (res) {
         if (res.code) {
@@ -29,8 +49,12 @@ Page({
             data: {
               code: res.code
             },
-            success:function(res){
-               console.log(res); 
+            success: function (res) {
+              if (res.data.state === 1) {
+                _this.setData({
+                  user_id: res.data.userid
+                })
+              }
             }
           })
         } else {

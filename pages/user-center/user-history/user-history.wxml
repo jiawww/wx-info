@@ -1,4 +1,13 @@
 <!--pages/user-center/user-history/user-history.wxml  我的发布-->
+<wxs module="dateFr" src="../../filter/dateFr.wxs"></wxs>
 <view class="container-gray">
+  <view class="info-list">
+    <view class="list-item" wx:for="{{infoList}}" wx:key="unique">
+      <text>{{item.title}}</text>   
+      <text>{{dateFr.getDate(item.createTime,':')}}</text>
+      <button wx:if="{{item.state===0}}" size="mini" bindtap="humanCheck" data-id="{{item.id}}">发起人工审核</button>
+      <button size="mini" bindtap="deleteMsg" data-id="{{item.id}}">删除</button>
+    </view>
+  </view>
   <view class="end-line">--------  都显示完了  --------</view>
 </view>

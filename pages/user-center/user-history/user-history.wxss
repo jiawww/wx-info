@@ -1,4 +1,14 @@
 /* pages/user-center/user-history/user-history.wxss */
+.list-item{
+  height:80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color:#fff;
+  font-size:32rpx;
+  border-bottom:1rpx solid #ddd; 
+  padding :0rpx 20rpx; 
+}
 .end-line{
   background-color:#fff;
   color:#ddd;

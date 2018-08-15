@@ -12,7 +12,8 @@
   padding :20rpx; 
 }
 .set-input{
-  text-align: right;
+  /* text-align:left; */
+  border:1px solid red;
 }
 .set-textarea{
   text-align: left;
