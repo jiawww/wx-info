@@ -57,9 +57,28 @@ Page({
     ]
   },
   toJump:function(e){
-    console.log(e.target);
-    wx.navigateTo({
-      url: 'create-post/create-post?index='+ e.target.dataset.num
+    let loginPage='../user-center/index';
+    let createPage = 'create-post/create-post?index=' + e.target.dataset.num;
+    wx.getStorage({
+      key: 'userid',
+      success: function(res) {
+        wx.navigateTo({
+          url: createPage,
+        })
+      },
+      fail:function(){
+        wx.showModal({
+          title: '发帖前请先登录',
+          success: function (res) {
+            if (res.confirm) {
+              wx.switchTab({
+                url: loginPage,
+              })
+            }
+          }
+        });
+      }
     })
+   
   }
 })

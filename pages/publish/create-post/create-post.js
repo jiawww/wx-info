@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    userid:'',
+    category:0,
     typeList: ['出租', '出售'],
     typeIndex:0,
     topList:[
@@ -29,6 +31,20 @@ Page({
       name: "张三",
       gender: "0"
     },
+  },
+  onLoad:function(option){
+    let _this=this;
+    this.setData({
+      category:option.index
+    });
+    wx.getStorage({
+      key: 'userid',
+      success: function (res) {
+        _this.setData({
+          userid:res.data
+        })
+      },
+    })
   },
   listChange: function (e) {
     let key = e.target.dataset.para;
@@ -62,7 +78,6 @@ Page({
     _this.setData({
       publishLoading:true
     });
-    // console.log(_this.data.imgList.toString());
     if (_this.data.imgList.length===0){
       wx.request({
         url: myService.AddPublishMessage,
@@ -71,9 +86,9 @@ Page({
         },
         method: 'POST',
         data: {
-          userid: "241e0a6e-2cce-440f-8e60-bd76da3bacc4",
+          userid: _this.data.userid,
           title: "招人啦",
-          category: "1",
+          category: _this.data.category,
           phone: submitData.phone,
           image:[],
           description: "要勤奋的",
@@ -88,7 +103,10 @@ Page({
           });
           wx.showToast({
             title: '发布成功',
-            icon: 'success'
+            icon: 'success',
+            success:function(){
+              setTimeout(_this.goTarget,500);  
+            }
           });
         }
       })
@@ -139,12 +157,21 @@ Page({
             wx.showToast({
               title: '发布成功',
               icon: 'success'
-            })
+            });
+            wx.navigateTo({
+              url: targetPage,
+            });
           }
       })
       }).catch(function (err) {
         console.log(err);
       });   
     } 
+  },
+  goTarget:function(){
+    let targetPage = '../../user-center/user-history/user-history';
+    wx.navigateTo({
+      url: targetPage,
+    })
   }
 })

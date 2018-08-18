@@ -1,6 +1,9 @@
 /* pages/user-center/user-history/user-history.wxss */
+.info-list{
+  height:100%;
+}
 .list-item{
-  height:80rpx;
+  height:10%;
   display: flex;
   align-items: center;
   justify-content: space-between;

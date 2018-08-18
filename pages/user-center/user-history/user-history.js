@@ -8,42 +8,60 @@ Page({
    */
   data: {
     currentPc:1,  //当前页
+    totalNum:0,   //帖子总数
     infoList:[],   //帖子列表
-    userid:""  //用户id
+    userid:"",  //用户id
+    isLoading:true  //是否可加载
   },
-  onLoad: function (options) {
-    console.log(options);
+  onLoad: function () {
     this.getUserId();
-    this.showMyHistory();
   },
+  // 获取用户Id
   getUserId:function(){
     let _this = this;
     wx.getStorage({
       key: 'userid',
       success: function (res) {
+        _this.showMyHistory(res.data);
         _this.setData({
-          userid: res
+          userid:res.data
         })
       },
     });
   },
-  showMyHistory:function(){
+  // 查看历史记录
+  showMyHistory:function(userid){
     let _this=this;
     let myService = app.globalData.serviceApi;
     wx.request({
       url: myService.ShowUserInfo,
       data: {
-        userid: "241e0a6e-2cce-440f-8e60-bd76da3bacc4",
-        pc:1
+        userid:userid,
+        pc:_this.data.currentPc
       },
       success:function(res){
-        console.log(res);
-        _this.setData({
-          infoList:res.data.records.beanList
-        });
+        if(_this.data.currentPc===1){
+          _this.setData({
+            totalNum:res.data.records.tr
+          })
+        }
+        if(_this.data.isLoading){
+          _this.setData({
+            infoList: _this.data.infoList.concat(res.data.records.beanList),
+            currentPc: res.data.records.pc + 1,
+          });
+          if (res.data.records.pc === res.data.records.tp) {
+            _this.setData({
+              isLoading: false
+            })
+          }
+        }else{
+          return
+        }
       }
     })
   },
+  // 发起人工审核
   humanCheck:function(e){
     let myService = app.globalData.serviceApi;
     wx.request({
@@ -56,6 +74,7 @@ Page({
       }
     });
   },
+  // 删除帖子确认弹窗
   deleteMsg:function(e){
     let _this=this;
     let id=e.target.dataset.id;
@@ -75,6 +94,7 @@ Page({
       }
     });
   },
+  // 删除帖子
   doDelete:function(id){
     let myService = app.globalData.serviceApi;
     let _this=this;
@@ -87,11 +107,39 @@ Page({
         if(res.data.state===1){
           wx.showToast({
             title: '删除成功',
-            icon: 'success'
+            icon: 'success',
+            success:function(){
+              setTimeout(
+                _this.refreshPage,1000
+              )
+            }
           })
         }
-        _this.showMyHistory();
       }
     });
+  },
+  // 加载更多
+  loadMore:function(e){
+    let _this=this;
+    if(this.data.isLoading){
+      setTimeout(_this.showMyHistory,500,_this.data.userid);
+    }else{
+      return;
+    }
+  },
+  //重新加载页面数据
+  refreshPage:function(){
+   let _this=this;
+   this.setData(
+     {
+       currentPc: 1,  //当前页
+       totalNum: 0,   //帖子总数
+       infoList: [],   //帖子列表
+       isLoading: true  //是否可加载
+     },
+     function(){
+       _this.showMyHistory(_this.data.userid);
+     }
+   );
   }
 })

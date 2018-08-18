@@ -3,7 +3,7 @@ const app = getApp()
 Page({
   data: {
     userInfo: {},
-    user_id:"",
+    userid:"",
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     infoList:[
@@ -12,10 +12,22 @@ Page({
     ]
   },
   //事件处理函数
-  onLoad: function () {},
+  onLoad: function () {
+    let _this=this;
+    wx.getStorage({
+      key: 'userid',
+      success: function(res) {
+        _this.setData({
+          userid:res,
+          hasUserInfo:true
+        });
+      }
+    })
+  },
   // 用户登录
   getUserInfo: function (e) {
     let _this=this;
+    debugger
     wx.showModal({
       title:'微信授权',
       content:'小程序申请获得你的公开信息（昵称、头像等）',
@@ -52,7 +64,7 @@ Page({
             success: function (res) {
               if (res.data.state === 1) {
                 _this.setData({
-                  user_id: res.data.userid
+                  userid: res.data.userid
                 });
                 wx.setStorage({
                   key: 'userid',
