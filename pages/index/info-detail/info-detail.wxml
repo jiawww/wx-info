@@ -1,5 +1,8 @@
 <!--pages/index/info-detail/info-detail.wxml-->
 <view>
+    <view>
+      
+    </view>
   帖子详情页
     <!-- userid: "241e0a6e-2cce-440f-8e60-bd76da3bacc4",
           title: "招人啦",

@@ -1,3 +1,4 @@
+//时间戳转日期  
 var DateFr = {
   format :function(val){
     return val < 10 ? '0' + val : val;

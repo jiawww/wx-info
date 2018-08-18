@@ -5,7 +5,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+     infoData:{
+        category:1,
+        comments:"{}",
+        createTime:1534423000000,
+        gender:0,
+        grade:1000,
+        id:96,
+image:"/root/WeixinPro/saveImage/2bd15e60-6161-4e1e-8de4-5c27d2e8e8b4.jpg",
+        miniText:"要勤奋的",
+        name:"张三",
+        phone:"18888882666",
+        state:0,
+        text:"要勤奋的",
+        title:"招人啦",
+        top:0,
+        type:0,
+        userId:"241e0a6e-2cce-440f-8e60-bd76da3bacc4",
+        viewNumber:0
+     }
   },
 
   /**

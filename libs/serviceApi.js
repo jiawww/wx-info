@@ -8,6 +8,7 @@ const serviceApi = {
   DeleteMessage: url + "DeleteMessage",
   UserLogin: url + "UserLogin",
   ShowUserInfo: url + "ShowUserInfo",
+  ShowNonValidInfo: url +'ShowNonValidInfo',
   RequestHumanCheck: url + "RequestHumanCheck"
 }
 module.exports=serviceApi;
