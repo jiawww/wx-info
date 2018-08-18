@@ -1,7 +1,7 @@
 <!--pages/user-center/user-history/user-history.wxml  我的发布-->
 <wxs module="dateFr" src="../../filter/dateFr.wxs"></wxs>
-<view class="container-gray">
-  <view class="info-list">
+<scroll-view class="container-gray" bindscrolltolower="loadMore">
+ <view class="info-list">
     <view class="list-item" wx:for="{{infoList}}" wx:key="unique">
       <text>{{item.title}}</text>   
       <text>{{dateFr.getDate(item.createTime,':')}}</text>
@@ -10,4 +10,5 @@
     </view>
   </view>
   <view class="end-line">--------  都显示完了  --------</view>
-</view>
+</scroll-view>
+

@@ -53,6 +53,10 @@ Page({
               if (res.data.state === 1) {
                 _this.setData({
                   user_id: res.data.userid
+                });
+                wx.setStorage({
+                  key: 'userid',
+                  data: res.data.userid,
                 })
               }
             }

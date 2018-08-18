@@ -8,16 +8,24 @@ Page({
    */
   data: {
     currentPc:1,  //当前页
-    infoList:[]   //帖子列表
+    infoList:[],   //帖子列表
+    userid:""  //用户id
   },
   onLoad: function (options) {
     console.log(options);
+    this.getUserId();
     this.showMyHistory();
   },
-  onReachBottom(e){ //上拉加载
-    console.log(e);
-    console.log(this);
-    console.log(666);
+  getUserId:function(){
+    let _this = this;
+    wx.getStorage({
+      key: 'userid',
+      success: function (res) {
+        _this.setData({
+          userid: res
+        })
+      },
+    });
   },
   showMyHistory:function(){
     let _this=this;
@@ -83,7 +91,6 @@ Page({
           })
         }
         _this.showMyHistory();
-  
       }
     });
   }
