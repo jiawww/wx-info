@@ -17,8 +17,8 @@
 }
 .box-right{
   padding-left:20rpx;
-  width:800rpx;
   position:relative;
+  flex:auto;
 }
 .post-header{
   padding-bottom:10rpx;

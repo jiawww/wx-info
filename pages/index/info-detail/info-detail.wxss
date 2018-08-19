@@ -1,1 +1,54 @@
 /* pages/index/info-detail/info-detail.wxss */
+.user-info{
+  padding:30rpx;
+  border-bottom:10rpx solid #f6f6f6;
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+}
+.user-avatar{
+  width:80rpx;
+  height:80rpx;
+  border-radius:50%;
+  border:1px solid green;
+}
+.user-middle{
+  padding-left:30rpx;
+  padding-top:10rpx;
+  flex:auto;
+}
+.user-phone{
+  color:#909090;
+}
+.btn-round{
+  width:150rpx;
+  height:50rpx;
+  line-height:50rpx;
+  border-radius:25rpx;
+  color:#ffffff;
+  background-color: #FF5C01;
+  font-size:24rpx;
+}
+.post-info{
+  padding:30rpx;
+  border-bottom:10rpx solid #f6f6f6;
+}
+.post-tag{
+  color:#FF5C01;
+  font-weight: bold;
+  font-size:28rpx;
+  padding-bottom:20rpx;
+}
+.create-time{
+  float: right;
+  color:#909090;
+  font-size:24rpx;
+  font-weight:normal;
+}
+.post-image-box{
+  text-align: center;
+}
+.post-image{
+  margin:10rpx 0;
+  max-width:100%;
+}

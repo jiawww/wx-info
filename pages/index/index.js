@@ -106,8 +106,11 @@ Page({
   },
   // 跳转分类信息
   toJump:function(e){
+    // wx.navigateTo({
+    //   url: "classify/classify?index=" + e.target.dataset.num + "&title=" + e.target.dataset.title
+    // });
     wx.navigateTo({
-      url: "classify/classify?index=" + e.target.dataset.num + "&title=" + e.target.dataset.title
+      url: 'info-detail/info-detail',
     })
   }
 })

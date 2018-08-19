@@ -1,11 +1,11 @@
 <!--pages/user-center/user-history/user-history.wxml  我的发布-->
 <wxs module="dateFr" src="../../filter/dateFr.wxs"></wxs>
 <scroll-view class="container-gray" scroll-y bindscrolltolower="loadMore">
-  <view class="list-item" wx:for="{{infoList}}" wx:key="unique">
+  <view class="list-item" wx:for="{{infoList}}" wx:key="unique" bindtap='goDetail' data-item="{{item}}">
       <text>{{item.title}}</text>   
       <text>{{dateFr.getDate(item.createTime,':')}}</text>
-      <button wx:if="{{item.state===0}}" size="mini" bindtap="humanCheck" data-id="{{item.id}}">发起人工审核</button>
-      <button size="mini" bindtap="deleteMsg" data-id="{{item.id}}">删除</button>
+      <button wx:if="{{item.state===0}}" size="mini" catch:tap="humanCheck" data-id="{{item.id}}">发起人工审核</button>
+      <button size="mini" catch:tap="deleteMsg" data-id="{{item.id}}">删除</button>
   </view>
   <view class="loading" hidden="{{!isLoading}}">
     <i class="fa fa-spinner fa-spin fa-fw"></i>  正在载入更多...

@@ -50,7 +50,7 @@ Page({
             infoList: _this.data.infoList.concat(res.data.records.beanList),
             currentPc: res.data.records.pc + 1,
           });
-          if (res.data.records.pc === res.data.records.tp) {
+          if ((res.data.records.pc === res.data.records.tp)||(res.data.records.tp===0)) {
             _this.setData({
               isLoading: false
             })
@@ -141,5 +141,12 @@ Page({
        _this.showMyHistory(_this.data.userid);
      }
    );
+  },
+  // 跳至详情页
+  goDetail:function(e){
+    let postInfo=JSON.stringify(e.currentTarget.dataset.item);
+    wx.navigateTo({
+      url: '../../index/info-detail/info-detail?postInfo='+postInfo
+    })
   }
 })

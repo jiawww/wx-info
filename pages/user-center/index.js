@@ -27,7 +27,6 @@ Page({
   // 用户登录
   getUserInfo: function (e) {
     let _this=this;
-    debugger
     wx.showModal({
       title:'微信授权',
       content:'小程序申请获得你的公开信息（昵称、头像等）',
@@ -59,9 +58,13 @@ Page({
           wx.request({
             url: myService.UserLogin,
             data: {
-              code: res.code
+              code: res.code,
+              avatarUrl:_this.data.userInfo.avatarUrl,
+              nickName:_this.data.userInfo.nickName,
+              gender:_this.data.userInfo.gender
             },
             success: function (res) {
+              console.log(res);
               if (res.data.state === 1) {
                 _this.setData({
                   userid: res.data.userid

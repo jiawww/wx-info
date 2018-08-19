@@ -28,15 +28,16 @@
         <textarea placeholder='请具体描述' class="set-textarea" name="description" value="{{submitData.description}}"></textarea>
       </li>
       <view class="img-list">
-        <image wx:for="{{imgList}}" wx:key="unique" wx:for-item="imgSrc" src="{{imgSrc}}" mode="scaleToFill" class="pre-img"></image>
+        <view class="img-box" wx:for="{{imgList}}" wx:key="unique" wx:for-item="imgSrc" wx:for-index="idx">
+          <image src="{{imgSrc}}" mode="aspectFill" class="pre-img"></image>
+          <span class="fa fa-times btn-close" catch:tap="delImg" data-idx="{{idx}}"></span>
+        </view>
+        <view class="btn-camera" hidden="{{imgList.length>5}}">
+          <span class="fa fa-camera" bindtap="upImg"></span>
+        </view>
       </view>
-      <button type="warn" bindtap="upImg">上传图片</button>
     </view>
-    <view class="list">
-      <li class="list-item">
-        <label>发布收费</label>
-        <span>¥2</span> 
-      </li>
+    <view class="list"> 
       <li class="list-item">
         <label>我要置顶</label>
          <picker mode="selector" bindchange="listChange" value="{{topIndex}}" range="{{topList}}" name="top" data-para="top">
@@ -45,7 +46,6 @@
             <span class="fa fa-angle-right"></span>
           </view>
         </picker>
-        <!-- <switch name="top"></switch> -->
       </li>
     </view>
     <button type="primary" formType="submit" loading="{{publishLoading}}">发布</button>

@@ -46,6 +46,7 @@ Page({
       },
     })
   },
+  // 选择框
   listChange: function (e) {
     let key = e.target.dataset.para;
     switch(key){
@@ -57,20 +58,40 @@ Page({
       }); break;
     }
   },
+  // 选择图片
   upImg:function(e){
-    console.log(this);
     let _this=this;
+    let max=6-this.data.imgList.length;
     wx.chooseImage({
+      count:max,
       success: function(res) {
-        console.log(res);
         _this.data.imgList=_this.data.imgList.concat(res.tempFilePaths);
         _this.setData({
           imgList:_this.data.imgList
-        });
-       
+        }); 
       },
     })
   },
+  // 删除图片
+  delImg:function(e){
+    let idx=e.target.dataset.idx;
+    let _this = this;
+    wx.showModal({
+      title: '删除图片',
+      content: '确定删除吗？',
+      success:function(res){
+        if(res.confirm){
+          let arr=_this.data.imgList;
+          arr.splice(idx,1);
+          _this.setData({
+            imgList:arr
+          })
+          console.log(_this.data.imgList);
+        }
+      }
+    })
+  },
+  // 发布信息
   publish:function(e){
     let myService=app.globalData.serviceApi;
     let _this=this;
@@ -168,6 +189,7 @@ Page({
       });   
     } 
   },
+  // 发布完成后跳转至“我的帖子”页面
   goTarget:function(){
     let targetPage = '../../user-center/user-history/user-history';
     wx.navigateTo({

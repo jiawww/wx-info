@@ -1,25 +1,33 @@
 <!--pages/index/info-detail/info-detail.wxml-->
-<view>
-    <view>
-      
+<view class="info-detail">
+    <!-- 用户信息 -->
+    <view class="user-info">
+      <image class="user-avatar" src="{{infoData.photo}}"></image>
+      <view class="user-middle">
+        <view>{{infoData.name}}</view>
+        <view class="user-phone">电话：{{infoData.phone}}</view>
+      </view>
+      <button class="btn-round">
+        <span class="fa fa-phone"></span>  联系
+      </button>
     </view>
-  帖子详情页
-    <!-- userid: "241e0a6e-2cce-440f-8e60-bd76da3bacc4",
-          title: "招人啦",
-          category: "1",
-          phone: submitData.phone,
-          image:[],
-          description: "要勤奋的",
-          top: submitData.top,
-          type: submitData.type,
-          name: "张三",
-          gender: "0"
-  <view>{{title}}</view>
-  <view>{{name}}</view>
-  <view>showLabel(category,type)</view>
-  <view>showTop(top)</view>
-  <view>{{description}}</view>
-  <view>
-    <image wx:for="{{image}}" src="{{item}}"></image>
-  </view> -->
+    <!-- 帖子信息 -->
+    <view class="post-info">
+    <!--  类型及发帖时间  -->
+      <view class="post-tag">
+        {{infoData.tag}} <text class="create-time">{{infoData.pubTime}}</text>
+      </view>
+      <!-- 标题 -->
+      <view class="post-title">
+        标题：<span style="font-weight:bold">{{infoData.title}}</span>  
+      </view>
+      <!-- 详情 -->
+      <view class="post-detail">
+        详细信息：<view>{{infoData.text}}</view>
+      </view>
+      <!-- 图片 -->
+      <view wx:if="{{infoData.image.length!==0}}" class="post-image-box">
+        <image wx:for="{{infoData.images}}" wx:for-item="imgUrl" src="{{imgUrl}}" class="post-image" mode="widthFix" lazy-load="{{true}}" wx:key="unique"></image>
+      </view>
+    </view>
 </view>
