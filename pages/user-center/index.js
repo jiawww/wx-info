@@ -18,10 +18,18 @@ Page({
       key: 'userid',
       success: function(res) {
         _this.setData({
-          userid:res,
+          userid:res.data,
           hasUserInfo:true
         });
       }
+    });
+    wx.getStorage({
+      key: 'userInfo',
+      success: function(res) {
+        _this.setData({
+          userInfo: res.data
+        });
+      },
     })
   },
   // 用户登录
@@ -33,11 +41,14 @@ Page({
       success: function(res){
         if(res.confirm){
           app.globalData.userInfo = e.detail.userInfo;
-          _this.setData({
-            userInfo: e.detail.userInfo,
-            hasUserInfo: true
-          })
+          wx.setStorage({
+            key: 'userInfo',
+            data: e.detail.userInfo,
+          });
           _this.userLogin();
+          _this.setData({
+            hasUserInfo: true
+          });
         }else if(res.cancel){
           wx.showToast({
             title: '取消授权',
@@ -57,11 +68,15 @@ Page({
           //发起网络请求
           wx.request({
             url: myService.UserLogin,
+            header: {
+              'content-type': 'application/x-www-form-urlencoded;charset=UTF-8',// 默认值
+            },
+            method: 'POST',
             data: {
               code: res.code,
-              avatarUrl:_this.data.userInfo.avatarUrl,
-              nickName:_this.data.userInfo.nickName,
-              gender:_this.data.userInfo.gender
+              avatarUrl: app.globalData.userInfo.avatarUrl,
+              nickName: app.globalData.userInfo.nickName,
+              gender: app.globalData.userInfo.gender
             },
             success: function (res) {
               console.log(res);

@@ -7,7 +7,7 @@
         <view>{{infoData.name}}</view>
         <view class="user-phone">电话：{{infoData.phone}}</view>
       </view>
-      <button class="btn-round">
+      <button class="btn-round" bindtap="toCall">
         <span class="fa fa-phone"></span>  联系
       </button>
     </view>

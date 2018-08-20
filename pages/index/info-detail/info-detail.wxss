@@ -14,10 +14,10 @@
 }
 .user-middle{
   padding-left:30rpx;
-  padding-top:10rpx;
   flex:auto;
 }
 .user-phone{
+  padding-top:10rpx;
   color:#909090;
 }
 .btn-round{
@@ -44,6 +44,12 @@
   color:#909090;
   font-size:24rpx;
   font-weight:normal;
+}
+.post-title{
+  line-height:40rpx;
+}
+.post-detail{
+  line-height:38rpx;
 }
 .post-image-box{
   text-align: center;

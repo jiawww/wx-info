@@ -56,12 +56,14 @@ Page({
       } 
     ],
     infoDataList:[],
-    infoData:{}
+    infoData:{},
+    currentPc:1   //当前页
   },
   //事件处理函数
   onLoad: function () {
-    this.getInfoData();
-    this.setList();
+    this.getInfoData();   //获取模拟数据信息
+    this.setList();      //初始化图标列表
+    this.getMsgList();   //获取信息列表
   },
   // 获取数据
   getInfoData:function(){
@@ -88,6 +90,20 @@ Page({
         comments: 0
       }
     });
+  },
+  // 获取信息列表
+  getMsgList:function(){
+    let myService = app.globalData.serviceApi;
+    let _this=this;
+    wx.request({
+      url: myService.PublishMessagesList,
+      data:{
+        pc:_this.data.currentPc
+      },
+      success:function(res){
+        console.log(res);
+      }
+    })
   },
   // 处理后的图标列表
   setList:function(){
